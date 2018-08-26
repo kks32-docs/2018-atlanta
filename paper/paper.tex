@@ -157,27 +157,8 @@ The collision matrix $\hat{\mathbf{S}} = MSM^{-1}$ in moment space is a diagonal
 \end{align}
 %**************************************************************************
 
-\subsection{Turbulence in Lattice Boltzmann Method}
-Modelling fluids with low viscosity like water remains a challenge, necessitating very small values of \textit{h}, and/or $\tau$ very close to 0.5~\shortcite{He1997}. Turbulent flows are characterised by the occurrence of eddies with multiple scales in space, time and energy. In this study, the Large Eddy Simulation (LES) is adopted to solve for turbulent flow problems. The separation of scales is achieved by filtering of the Navier-Stokes equations, from which the resolved scales are directly obtained and unresolved scales are modelled by a one-parameter Smagorinski sub-grid methodology, which assumes that the Reynold's stress tensor is dependent only on the local strain rate~\shortcite{Smagorinsky1963}. The turbulent viscosity $\nu$ is related to the strain rate $S_{ij}$ and a filtered length scale `h' as follows:
-\begin{align}
-&\mathit{v}_{\mathit{t}}  =  (\mathit{S}_{c}\mathit{h})^{2}\overline{S}; \\
-&\overline{S}  = \sqrt{\sum\limits_{\mathit{i,j}}{\tilde{S}_{\mathit{i,j}}\tilde{S}_{\mathit{i,j}}}}
-\end{align}
-where $\mathit{S}_{c}$ is the Smagorinski constant found to be close to 0.03~\shortcite{yu2005}.
-
-The effect of the unresolved scale motion is taken into account by introducing an effective collision relaxation time scale $\tau_{t}$, so that the total relaxation time $\tau_{*}$ is written as:
-\begin{align}
-\tau_{*}=\tau + \tau_{t}
-\end{align}
-where $\tau$ and $\tau_{t}$ are respectively the standard relaxation times corresponding to the true fluid viscosity \textit{v} and the turbulence viscosity $\mathit{v}_{\mathit{t}}$, defined by a sub-grid turbulence model. The new viscosity $\mathit{v}_{*}$ corresponding to $\tau_{*}$ is defined as:
-\begin{align}
-& \mathit{v}_{*}=\mathit{v}+\mathit{v}_{\mathit{t}}=\frac{1}{3}(\tau+\tau_{t}-\frac{1}{2})\mathit{C}^{2} \Delta \mathit{t}  \\
-& \mathit{v}_{\mathit{t}}=\frac{1}{3}\tau_{\mathit{t}}\mathit{C}^{2} \Delta \textit{t}
-\end{align}
-The Smagorinski model is easy to implement and the Lattice Boltzmann formulation remains unchanged, except for the use of a new turbulence-related viscosity $\tau_{*}$. The component $s_1$ of the collision matrix becomes $s_1 = \frac{1}{\tau+\tau_t}$.
-%************************************************************************* %
 \section{COUPLED LB - DEM FOR FLUID-PARTICLE INTERACTIONS}
-The Lattice Boltzmann approach has the advantage of accommodating large particle sizes and the interaction between the fluid and the moving particles can be modelled through relatively simple fluid - particle interface treatments. Further, employing the Discrete Element Method (DE) to account for the particle/particle interaction naturally leads to a combined LB - DEM solution procedure. The Eulerian nature of the Lattice Boltzmann formulation, together with the common explicit time step scheme of both the Lattice Boltzmann and the Discrete Element makes this coupling strategy an efficient numerical procedure for the simulation of particle-fluid systems~\shortcite{Cook2004}. In order to capture the actual physical behaviour of the fluid-particle system, the boundary condition between the fluid and the particle is modelled as a non-slip boundary condition, i.e. the fluid near the particle should have similar velocity as the particle boundary. The solid particles inside the fluid are represented by lattice nodes. The discrete nature of lattice will result in stepwise representation of the surfaces. Very small lattice spacing is adopted to obtain smoother boundaries.
+The Lattice Boltzmann approach has the advantage of accommodating large particle sizes and the interaction between the fluid and the moving particles can be modelled through relatively simple fluid - particle interface treatments. Further, employing the Discrete Element Method (DE) to account for the particle/particle interaction naturally leads to a combined LB - DEM solution procedure. The Eulerian nature of the Lattice Boltzmann formulation, together with the common explicit time step scheme of both the Lattice Boltzmann and the Discrete Element makes this coupling strategy an efficient numerical procedure for the simulation of particle-fluid systems~\shortcite{Cook2004}. In order to capture the actual physical behaviour of the fluid-particle system, the boundary condition between the fluid and the particle is modelled as a non-slip boundary condition, i.e. the fluid near the particle should have similar velocity as the particle boundary. The solid particles inside the fluid are represented by lattice nodes. The discrete nature of lattice will result in stepwise representation of the surfaces. Very small lattice spacing is adopted to obtain smoother boundaries. Further details about the modelling can be found in~\shortciteNP{Kumar2015,Kumar2017}.
 
 \section{UNDERWATER GRANULAR FLOWS}
 In this study, a 2D poly-disperse system ($d_{max}/d_{min} = 1.8$) of circular discs in fluid was used to understand the behaviour of granular flows on inclined planes (see~\Cref{fig:setup}). The soil column was modelled using 1000 discs of density \SI{2650}{\kg\per\cubic\meter} and a contact friction angle of \SI{26}{\degree}. The collapse of the column was simulated inside a fluid with a density of \SI{1000}{\kg\per\cubic\meter}  and a kinematic viscosity of \SI{1e-6}{\square\meter\per\second}. The choice of a 2D geometry has the advantage of cheaper computational effort than a 3D case, making it feasible to simulate very large systems. A granular column of aspect ratio `a' of 0.8 was used. Dry analyses were also performed to study the effect of hydrodynamic forces on the run-out distance.
@@ -190,7 +171,7 @@ In this study, a 2D poly-disperse system ($d_{max}/d_{min} = 1.8$) of circular d
 
 \subsection{Effect of initial packing density}
 
-\citeNP{Rondon2011} observed that the loose packings flow rapidly on a time
+\shortciteNP{Rondon2011} observed that the loose packings flow rapidly on a time
 scale proportional to the initial height and results in longer run-out distance 
 in comparison to the dense packing. Hydroplaning occurs above a critical 
 Froude's number of 0.4. The Froude's number is inversely related to the 
@@ -204,6 +185,7 @@ behaviour of the dense case (83\% packing density), is compared with a loose
 granular column (79\% packing fraction). The permeability is varied by changing
 the hydrodynamic radius from 0.7 \textit{R} to 0.95 \textit{R}. 
 
+\subsection{Dense granular collapse}
 The normalised run-out for different hydrodynamic radii for a granular column 
 with an initial aspect ratio of 0.8 for dense initial packing are presented 
 in~\cref{fig:Runout_a08_dense}. The run-out increases with decrease in the 
@@ -239,13 +221,13 @@ pore-pressures observed in the shearing zone of a low permeable column
 (\textit{r} = 0.9 R). This shows that not only does it take longer for the 
 pore-pressure to dissipate with a decrease in permeability, but also results in 
 almost twice the negative pore-pressure than what is observed in the high 
-permeable case (\cref{fig:r095_PWP_ini_dense,fig:r095_PWPress_ini_dense}). A 
+permeable case (\cref{fig:r095_PWP_ini_dense}). A 
 high value of positive pore-pressure is observed at the face of the column 
 in the low permeable condition. This indicates that the low permeable column 
 fails as a continuous block undergoing a shear failure, which generates a very 
 large negative pore-pressure along the failure surface. However, in the case of 
 the high permeable column the failure is more localised with multiple negative 
-pore-pressure spikes (\cref{fig:r07_PWPress_ini_dense}).
+pore-pressure spikes (\cref{fig:r07_PWP_ini_dense}).
 
 \begin{figure}
 \centering
@@ -263,45 +245,22 @@ pore-pressure spikes (\cref{fig:r07_PWPress_ini_dense}).
         bottom of the granular flow.}
     \label{fig:r095_PWP_ini_dense}
 \end{subfigure}
-\end{figure}
-\begin{figure}
-\ContinuedFloat
-\begin{subfigure}[t]{0.975\linewidth}
-	\centering
-    \includegraphics[width=\linewidth]{figs/a08/r07_PWP_ini_press_dense}
-    \caption{High permeability (\textit{r} = 0.7 \textit{R}) - Pressure contour 
-    (Pa).}
-    \label{fig:r07_PWPress_ini_dense}
-\end{subfigure} \\
-\begin{subfigure}[t]{0.975\linewidth}
-	\centering
-    \includegraphics[width=\linewidth]{figs/a08/r095_PWP_ini_press_dense}
-    \caption{Low permeability (\textit{r} = 0.95 \textit{R}) - Pressure contour 
-    (Pa).}
-    \label{fig:r095_PWPress_ini_dense}
-\end{subfigure}
-
 \caption{Effect of permeability on the excess pore water pressure distribution 
 for a granular column collapse in fluid (a = 0.8 \& dense packing) at $t = 
 \tau_c$ along the horizontal direction at a height of 10d from the base.}
 \label{fig:PWP_ini_dense}
 \end{figure}
 
-Although the low permeability granular columns require a longer duration for 
-the run-out to evolve, the final run-out distance is found to be much longer 
-than in the high permeable condition.~\Cref{fig:PE_a08_dense} shows that the 
-potential energy mobilised during the flow of a low permeability column is 20\% 
-smaller than the collapse of a high permeability granular column. Normalised 
-kinetic energy evolution with time (\cref{fig:a08_dense_energy}) shows that the 
+Normalised kinetic energy evolution with time (\cref{fig:KExy_a08_dense}) shows that the 
 low permeability column has a wider peak kinetic energy distribution in 
 comparison to a sharp peak observed in the high permeability condition. This 
 indicates the influence of lubrication, i.e., hydroplaning of the granular flow 
 in low permeability conditions. The evolution of the horizontal kinetic energy 
 with time reveals that the peak kinetic energy is sustained longer as the 
-permeability of the granular material decreases (\cref{fig:KExy_a08_dense}). 
+permeability of the granular material decreases . 
 Although the peak kinetic energy is smaller in the low permeability case, the 
 hydroplaning of the flowing granular mass results in a longer run-out 
-distance.~\Cref{fig:r095_PWP_flow_dense,fig:r095_PWPress_flow_dense} shows the 
+distance.~\Cref{fig:r095_PWP_flow_dense} shows the 
 distribution of pore-pressure for a dense granular column collapse in fluid 
 along the bottom plane. A high positive pore-pressure is observed 
 at the base of the granular flow at the flow front in low permeability 
@@ -314,37 +273,13 @@ in the value of packing density between $t = 2\tau_c$ and $t=3\tau_c$
 corroborates with the duration of hydroplaning during which a large amount of 
 water in entrained at the flow front.
 
-\begin{figure}
-	\centering
-    \includegraphics[width=0.7\linewidth]{figs/PE_a08_dense}
-    \caption{Effect of permeability on the evolution of the potential energy 
-    with time for a granular column collapse in fluid (a = 0.8).}
-    \label{fig:PE_a08_dense}
-\end{figure}
 
 \begin{figure}
-\centering
-\makebox[\linewidth][c]{
-\begin{subfigure}[t]{0.8\linewidth}
-	\centering
-    \includegraphics[width=\linewidth]{figs/KE_a08_dense}
-    \caption{Evolution of the total kinetic energy.}
-    \label{fig:KE_a08_dense}
-\end{subfigure}
-}\\
-\makebox[\linewidth][c]{
-\begin{subfigure}[t]{0.95\linewidth}
-	\centering
     \includegraphics[width=\linewidth]{figs/KExy_a08_dense}
-    \caption{Evolution of horizontal and vertical kinetic energies.}
-    \label{fig:KExy_a08_dense}
-\end{subfigure}
-}
-\caption{Effect of permeability on the evolution of kinetic energies with time 
+    \caption{Effect of permeability on the evolution of kinetic energies with time 
 for a granular column collapse in fluid (a = 0.8).}
-\label{fig:a08_dense_energy}
+    \label{fig:KExy_a08_dense}
 \end{figure}
-
 
 \begin{figure}
 \centering
@@ -362,24 +297,6 @@ for a granular column collapse in fluid (a = 0.8).}
     \caption{Low permeability (\textit{r} = 0.95 \textit{R}) - Pressure at the 
         bottom of the granular flow.}
     \label{fig:r095_PWP_flow_dense}
-\end{subfigure}
-\end{figure}
-\begin{figure}
-\ContinuedFloat
-\begin{subfigure}[t]{0.975\linewidth}
-	\centering
-    \includegraphics[width=\linewidth]{figs/a08/r07_PWP_flow_press_dense}
-    \caption{High permeability (\textit{r} = 0.7 \textit{R}) - Pressure contour 
-    (Pa).}
-    \label{fig:r07_PWPress_flow_dense}
-\end{subfigure}
-\\
-\begin{subfigure}[t]{0.975\linewidth}
-	\centering
-    \includegraphics[width=\linewidth]{figs/a08/r095_PWP_flow_press_dense}
-    \caption{Low permeability (\textit{r} = 0.95 \textit{R}) - Pressure contour 
-    (Pa).}
-    \label{fig:r095_PWPress_flow_dense}
 \end{subfigure}
 \caption{Effect of permeability on the excess pore water pressure distribution 
 along the bottom plane for a granular column collapse in fluid (a = 0.8 \& 
@@ -424,17 +341,9 @@ for a low permeable column. Hence, no hydroplaning is observed. In both the low
 and high permeable granular flows, the granular material consolidates at the 
 final stage of the flow (\cref{fig:Packing_Density_a08_dense}). This can be 
 observed by the increase in the packing density at the final stage due to 
-settlement of grains and expulsion of entrained water. The final deposit 
-profile for both low and high permeability conditions are shown 
-in~\cref{fig:a08_dense_snapshots}. The high permeability collapse shows a more 
-parabolic (convex) deposit profile in contrast to the more concave profile 
-observed in the low permeability condition. In high permeable condition, once 
-the granular mass is mobilised, the drag forces slows down the rate of flow, 
-which allows the grains to densify resulting in a more parabolic profile. This 
-is in contrast to the hydroplaning observed in the low permeability condition, 
-where the granular mass thickness is smaller than the dense condition. The 
-observation of hydroplaning in the low permeable condition may be due to the 
-difference in the distribution of granular mass at the flow front.
+settlement of grains and expulsion of entrained water.
+
+\subsection{Loose granular collapse}
 
 The normalised run-out evolution with time for a loose initial packing (79\% 
 packing fraction) with different hydrodynamic radii 0.7 \textit{R}, 0.8 
@@ -495,27 +404,6 @@ longer run-out distance.
     \label{fig:Loose_r095_PWP_ini}
 \end{subfigure}
 }
-\end{figure}
-\begin{figure}
-\ContinuedFloat
-\makebox[\linewidth][c]{
-\begin{subfigure}[t]{0.975\linewidth}
-	\centering
-    \includegraphics[width=\linewidth]{figs/a08/r07_PWP_ini_press_loose}
-    \caption{High permeability (\textit{r} = 0.7 \textit{R}) - Pressure contour 
-    (Pa).}
-    \label{fig:Loose_r07_PWPress_ini}
-\end{subfigure}
-}\\
-\makebox[\linewidth][c]{
-\begin{subfigure}[t]{0.975\linewidth}
-	\centering
-    \includegraphics[width=\linewidth]{figs/a08/r095_PWP_ini_press_loose}
-    \caption{Low permeability (\textit{r} = 0.95 \textit{R}) - Pressure contour 
-    (Pa).}
-    \label{fig:Loose_r095_PWPress_ini}
-\end{subfigure}
-}
 \caption{Effect of permeability on the excess pore water pressure distribution 
 along the base of a granular column collapse in fluid (a = 0.8 \& loose 
 packing) at $t = \tau_c$.}
@@ -542,36 +430,13 @@ packing) at $t = \tau_c$.}
     \label{fig:Loose_r095_PWP_flow}
 \end{subfigure}
 }
-\end{figure}
-\begin{figure}
-\ContinuedFloat
-\makebox[\linewidth][c]{
-\begin{subfigure}[t]{0.975\linewidth}
-	\centering
-    \includegraphics[width=\linewidth]{figs/a08/r07_PWP_flow_press_loose}
-    \caption{High permeability (\textit{r} = 0.7 \textit{R}) - Pressure contour 
-    (Pa).}
-    \label{fig:Loose_r07_PWPress_flow}
-\end{subfigure}
-}\\
-\makebox[\linewidth][c]{
-\begin{subfigure}[t]{0.975\linewidth}
-	\centering
-    \includegraphics[width=\linewidth]{figs/a08/r095_PWP_flow_press_loose}
-    \caption{Low permeability (\textit{r} = 0.95 \textit{R}) - Pressure contour 
-    (Pa).}
-    \label{fig:Loose_r095_PWPress_flow}
-\end{subfigure}
-}
 \caption{Effect of permeability on the excess pore water pressure distribution 
 for a granular column collapse in fluid (a = 0.8 \& loose packing) at $t = 
 2\tau_c$.}
 \label{fig:Loose_PWP_flow}
 \end{figure}
 
-The evolution of the potential energy with time (\cref{fig:PE_a08_loose}) 
-reveals that at a very low permeability (\textit{r} = 0.95 \textit{R}), the 
-initial potential energy mobilised is smaller than at \textit{r} = 0.9 
+The initial potential energy mobilised is smaller than at \textit{r} = 0.9 
 \textit{R}. Also with decreasing permeability, the time required to 
 dissipate the negative pore-pressure increases. This results in a shorter 
 run-out distance in the case of \textit{r} = 0.95 \textit{R} to that of 
@@ -602,37 +467,12 @@ that the low permeable columns exhibit higher Froude's numbers, greater than
 0.4, that indicates occurrence of hydroplaning. This lubrication effect results 
 in an increase in the run-out distance for columns with low permeabilities.
 
-\begin{figure}
-	\centering
-    \includegraphics[width=0.8\linewidth]{figs/PE_a08_loose}
-    \caption{Effect of permeability on the evolution of the potential energy 
-    with time for a granular column collapse in fluid (a = 0.8 \& loose 
-    packing).}
-    \label{fig:PE_a08_loose}
-\end{figure}
-
 
 \begin{figure}
-\centering
-\makebox[\linewidth][c]{
-\begin{subfigure}[t]{0.8\linewidth}
-	\centering
-    \includegraphics[width=\linewidth]{figs/KE_a08_loose}
-    \caption{Evolution of the total kinetic energy.}
-    \label{fig:KE_a08_loose}
-\end{subfigure}
-}\\
-\makebox[\linewidth][c]{
-\begin{subfigure}[t]{0.95\linewidth}
-	\centering
     \includegraphics[width=\linewidth]{figs/KExy_a08_loose}
-    \caption{Evolution of horizontal and vertical kinetic energies.}
-    \label{fig:KExy_a08_loose}
-\end{subfigure}
-}
-\caption{Effect of permeability on the evolution of kinetic energies with time 
+    \caption{Effect of permeability on the evolution of kinetic energies with time 
 for a granular column collapse in fluid (a = 0.8 \& loose packing).}
-\label{fig:a08_loose_energy}
+    \label{fig:KExy_a08_loose}
 \end{figure}
 
 \begin{figure}
@@ -657,73 +497,6 @@ for a granular column collapse in fluid (a = 0.8 \& loose packing).}
     Froude's number for a granular column collapse in fluid (a = 0.8 \& loose 
     initial packing).}
     \label{fig:Packing_Density_Fr_a08_loose}
-\end{figure}
-
-
-The evolution of grain trajectories with time are presented 
-in~\cref{fig:Loose_a08_permeability} for low (\textit{r} = 0.95 \textit{R}) and 
-high (\textit{r} = 0.9 \textit{R})
-permeability conditions. It can be observed that a high 
-permeability column shows a parabolic (convex) final profile in contrast to the 
-more concave profile observed in low permeability condition, due to the effect 
-of drag forces on the flow front. This difference in the flow thickness results 
-in a higher value of Froude's number (0.59) and the occurrence of hydroplaning 
-in the low permeability condition. Due to the high permeability, the water 
-entrained at the flow front is dissipated quicker and 
-thus no lubrication effect is observed. A Froude's number of 0.272 (no 
-hydroplaning) is observed for the high permeability condition (\textit{r} = 0.7 
-\textit{R}). The 
-thick flow front in dense condition results in higher effective stress, in 
-contrast to the low effective stress in loose condition due to positive 
-pore-pressure at the flow front. The higher effective stress results in more 
-frictional dissipation in dense condition, while the loose column experiences
-lubrication effect. This shows that the drag force predominates at high 
-permeability, while the low permeability condition is characterised by 
-hydroplaning and lubrication.
-
-\Cref{fig:effective_stress_a08} shows the normalised pressure at the 
-base for the low and high permeability flows at $ t = 2\tau_c$. The normalised 
-effective stress plotted is obtained as the average over 5 time steps at 
-$2\tau_c$. The effective stress at the base is normalised to the effective 
-stress of a static granular column before the collapse. A value of 1 indicates 
-that the effective stress hasn't changed, which can be observed in the static 
-region of the granular column. It can be observed that the normalised effective 
-stress is significantly higher for the high permeability condition at the flow 
-front in comparison to the almost non-existence of effective stress in the low 
-permeability condition. The observation of trivial effective stress at the flow 
-front corroborates the lubrication effect observed at low permeability 
-conditions.
-
-\begin{figure}
-\centering
-\makebox[\linewidth][c]{
-\begin{subfigure}[t]{0.975\linewidth}
-	\centering
-    \includegraphics[width=\linewidth]{figs/a08/LBM_MD_loose_a08_r07_pt}
-    \caption{High permeability (\textit{r} = 0.7 \textit{R}).}
-    \label{fig:LBM_MD_loose_a08_r07_pt}
-\end{subfigure}
-}\\
-\makebox[\linewidth][c]{
-\begin{subfigure}[t]{0.975\linewidth}
-	\centering
-    \includegraphics[width=\linewidth]{figs/a08/LBM_MD_a08_Loose_r09}
-    \caption{Low permeability (\textit{r} = 0.95 \textit{R}).}
-    \label{fig:LBM_MD_a08_Loose_r09}
-\end{subfigure}
-}
-\caption{Particle tracking of the deposit morphology
-for a granular column collapse in fluid (a = 0.8 \& loose packing), influence 
-of permeability.}
-\label{fig:Loose_a08_permeability}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=0.97\columnwidth]{figs/a08/effective_stress_a08}
-\caption{Effect of permeability on the normalised effective stress for loose 
-initial packing at $t = 2\tau_c$.}
-\label{fig:effective_stress_a08}
 \end{figure}
 
 \Cref{fig:Dense_Loose_PT} shows the grain trajectories of a dense and a loose 
@@ -756,18 +529,18 @@ distance than the dry condition.
 Two-dimensional LB-DEM simulations were performed to understand the behaviour of
 submarine granular flows. Unlike dry granular collapse, the run-out behaviour in
 fluid is dictated by the initial volume fraction.
-\citeNP{Rondon2011} also observed that the collapse of a granular column in a 
+\shortciteNP{Rondon2011} also observed that the collapse of a granular column in a 
 viscous fluid is mainly controlled by the initial volume fraction and not by 
 the aspect ratio of the column. The role of the initial volume fraction 
 observed explains the pore pressure feedback mechanism proposed 
-by~\citeNP{Schaeffer2008,Iverson2000} in the context of landslides. The 
+by~\shortciteNP{Schaeffer2008,Iverson2000} in the context of landslides. The 
 compaction or dilation of grains can cause additional stress in the grains 
 which can stabilise or destabilise the soil. The flow is thus controlled by the 
 coupling between the dilatancy of the granular layer and the development of 
-pore pressure in the fluid phase~\cite{Pailha2008}. The dense column needs to 
+pore pressure in the fluid phase~\shortcite{Pailha2008}. The dense column needs to 
 dilate in order to flow. When it starts to fall, liquid is then sucked into the 
 column, which is then stabilised by the additional viscous 
-drag~\cite{Rondon2011,Topin2012}. By opposition the loose column when 
+drag~\shortcite{Rondon2011,Topin2012}. By opposition the loose column when 
 it starts flowing expands and ejects liquid, leading to a partial fluidisation 
 of the material.
 
