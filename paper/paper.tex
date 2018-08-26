@@ -119,52 +119,21 @@
 
 
 The flow of dense granular material is a common phenomenon in engineering predictions, such as avalanches, landslides, and debris-flow modelling. Despite the huge amount of research that has gone into describing the behaviour of granular flows, a constitutive equation that describes the overall behaviour of a flowing granular material is still lacking. The initiation and propagation of submarine granular flows depend mainly on the slope, density, and quantity of the material destabilised. Although certain macroscopic models are able to capture the simple mechanical behaviours, the complex physical mechanisms that occur at the grain scale, such as thydrodynamic instabilities, the formation of clusters, collapse, and transport, have largely been ignored~\shortcite{Topin2011}. The momentum transfer between the discrete and the continuous phases significantly affects the dynamics of the flow~\shortcite{Peker2007}. Grain-scale description of the granular material enriches the macro-scale variables,  which poorly account for the local rheology of the materials.  In order to describe the mechanism of saturated and/or immersed granular flows, it is important to consider both the dynamics of the solid phase and the role of the ambient fluid~\shortcite{Denlinger2001}. In particular, when the solid phase reaches a high volume fraction, it is important to consider the strong heterogeneity arising from the contact forces between the grains, the drag interactions which counteract the movement of the grains, and the hydrodynamic forces that reduce the weight of the solids inducing a transition from dense compacted to a dense suspended flow~\shortcite{Meruane2010}. The case of the collapse in presence of an interstitial fluid has been less studied. In this paper, we study the submarine granular flows in the inclined configuration. We study the effect of permeability, density and slope angle on the run-out evolution.
+
 \section{LBM FORMULATION}
 
-The Lattice Boltzmann Method is a `micro-particle' based numerical time-stepping procedure for the solution of incompressible fluid flows. Consider a 2D incompressible fluid flow with density $\rho$ and kinematic viscosity \textit{v}, in a rectangular domain \textit{\textbf{D}}. The fluid domain is divided into a rectangular grid or lattice, with the same spacing \textit{`h'} in both the \textit{x-} and the \textit{y-}directions, as shown in~\cref{fig:D2Q9}. The present study focuses on two-dimensional problems, hence the \textit{D2Q9} momentum discretisation is adopted (see \shortciteN{He1997} for naming convention).
+The Lattice Boltzmann Method is a `micro-particle' based numerical time-stepping procedure for the solution of incompressible fluid flows. Consider a 2D incompressible fluid flow with density $\rho$ and kinematic viscosity \textit{v}, in a rectangular domain \textit{\textbf{D}}. The fluid domain is divided into a rectangular grid or lattice, with the same spacing \textit{`h'} in both the \textit{x-} and the \textit{y-}directions~\shortcite{Kumar2015}. The present study focuses on two-dimensional problems, hence the \textit{D2Q9} momentum discretisation is adopted (see \shortciteN{He1997} for naming convention). The Multiple Relaxation Time LBM (LBM-MRT) is adopted in the present study for numerical stability. Further details about the modelling can be found in~\shortciteNP{Kumar2015,Kumar2017}.
 
-\begin{figure}[htpb]
-\centering
-\includegraphics[width=0.45\textwidth]{figs/D2Q9.pdf}
-\caption[The Lattice Boltzmann discretisation and D2Q9 scheme]{The Lattice Boltzmann discretisation and D2Q9 scheme: (a) a standard LB lattice and histogram views of the discrete single particle distribution function/direction-specific densities $f_i$; (b) D2Q9 model}
-\label{fig:D2Q9}
-\end{figure}
-
-The lattice Boltzmann Bhatnagar-Gross-Krook (LGBK) method is capable of simulating various hydrodynamics~\shortcite{Succi2001} and offers intrinsic parallelism. Although LBM is successful in modelling complex fluid systems, such as multiphase flows and suspensions in fluid, the LBM may lead to numerical instability when the dimensionless relaxation time $\tau$ is close to 0.5. The Multi-Relaxation Time Lattice Boltzmann Method (LBM-MRT) overcomes the deficiencies of linearlised single relaxation LBM-BGK, such as fixed Prandtl number (Pr=$\nu/\kappa$), where the thermal conductivity `$\kappa$' is unity~\shortcite{Liu2003a}. The LB-MRT model offers better numerical stability and has more degrees of freedom. In the formulation of the linear Boltzmann equation with multiple relaxation time approximation, the lattice Boltzmann equation is written as:
-
-\begin{align}
-&f_{\alpha}(\mathbf{x}+\mathbf{e}_i\Delta_t, t+ \Delta_t)-f_{\alpha}(\mathbf{x},t) \nonumber \\
-&\mbox{\qquad\qquad} = -\mathbf{S}_{\alpha i}(f_i(\mathbf{x},t)-f_i^{eq}(\mathbf{x},t)
-\end{align}
-
-\noindent where \textbf{S} is collision matrix. The nine eigen values of \textbf{S} are all between 0 and 2 so as to maintain linear stability and the separation of scales, which means that the relaxation times of non-conserved quantities are much faster than the hydrodynamic time scales. The LGBK model is the special case in which the nine relaxation times are all equal and the collision matrix $\mathbf{S}=\frac{1}{\tau}\mathbf{I}$, where \textbf{I} is the identity matrix. The evolutionary progress involves two steps, advection and flux. The advection can be mapped to the momentum space by multiplying through by a transformation matrix \textbf{M} and the flux is still finished in the velocity space. The evolutionary equation of the multi-relaxation time lattice Boltzmann equation is written as:
-
-\begin{align}
-&\mathbf{f}(\mathbf{x}+\mathbf{e}_i\Delta_t, t+ \Delta_t)-\mathbf{f}(\mathbf{x},t) \nonumber \\
-&\mbox{\qquad\qquad} = -M^{-1}\hat{\mathbf{S}} (\hat{\mathbf{f}}(\mathbf{x},t)-\hat{\mathbf{f}}^{eq}(\mathbf{x},t))
-\end{align}
-
-\noindent where \textbf{M} is the transformation matrix mapping a vector \textbf{f} in the discrete velocity space $\mathds{V}=\mathds{R}^b$ to a vector $\hat{\mathbf{f}}$ in the moment space $\mathds{V}=\mathds{R}^b$.
-
-\begin{align}
-&\hat{\mathbf{f}} = \mathbf{M}\mathbf{f}\\
-&\mathbf{f}(\mathbf{x},t) = \left[f_0(\mathbf{x},t),f_1(\mathbf{x},t),\dots f_8(\mathbf{x},t)\right]^T
-\end{align}
-
-The collision matrix $\hat{\mathbf{S}} = MSM^{-1}$ in moment space is a diagonal matrix: $\hat{\mathbf{S}} =\mbox{diag} \left[ s_1, s_2, s_3,\dots s_9  \right]$. The transformation matrix \textbf{M} can be constructed via Gram-Schmidt orthgonalisation procedure. Through the Chapman-Enskog expansion~\shortcite{Du2006}, the incompressible Navier-Stokes equation can be recovered and the viscosity is given as:
-\begin{align}
-\nu=c_s^2\Delta t(\tau-0.5)
-\end{align}
 %**************************************************************************
 
 \section{COUPLED LB - DEM FOR FLUID-PARTICLE INTERACTIONS}
-The Lattice Boltzmann approach has the advantage of accommodating large particle sizes and the interaction between the fluid and the moving particles can be modelled through relatively simple fluid - particle interface treatments. Further, employing the Discrete Element Method (DE) to account for the particle/particle interaction naturally leads to a combined LB - DEM solution procedure. The Eulerian nature of the Lattice Boltzmann formulation, together with the common explicit time step scheme of both the Lattice Boltzmann and the Discrete Element makes this coupling strategy an efficient numerical procedure for the simulation of particle-fluid systems~\shortcite{Cook2004}. In order to capture the actual physical behaviour of the fluid-particle system, the boundary condition between the fluid and the particle is modelled as a non-slip boundary condition, i.e. the fluid near the particle should have similar velocity as the particle boundary. The solid particles inside the fluid are represented by lattice nodes. The discrete nature of lattice will result in stepwise representation of the surfaces. Very small lattice spacing is adopted to obtain smoother boundaries. Further details about the modelling can be found in~\shortciteNP{Kumar2015,Kumar2017}.
+The Lattice Boltzmann approach has the advantage of accommodating large particle sizes and the interaction between the fluid and the moving particles can be modelled through relatively simple fluid - particle interface treatments. Further, employing the Discrete Element Method (DE) to account for the particle/particle interaction naturally leads to a combined LB - DEM solution procedure. The Eulerian nature of the Lattice Boltzmann formulation, together with the common explicit time step scheme of both the Lattice Boltzmann and the Discrete Element makes this coupling strategy an efficient numerical procedure for the simulation of particle-fluid systems~\shortcite{Cook2004}. In order to capture the actual physical behaviour of the fluid-particle system, the boundary condition between the fluid and the particle is modelled as a non-slip boundary condition, i.e. the fluid near the particle should have similar velocity as the particle boundary. The solid particles inside the fluid are represented by lattice nodes. The discrete nature of lattice will result in stepwise representation of the surfaces. Very small lattice spacing is adopted to obtain smoother boundaries. 
 
 \section{UNDERWATER GRANULAR FLOWS}
 In this study, a 2D poly-disperse system ($d_{max}/d_{min} = 1.8$) of circular discs in fluid was used to understand the behaviour of granular flows on inclined planes (see~\Cref{fig:setup}). The soil column was modelled using 1000 discs of density \SI{2650}{\kg\per\cubic\meter} and a contact friction angle of \SI{26}{\degree}. The collapse of the column was simulated inside a fluid with a density of \SI{1000}{\kg\per\cubic\meter}  and a kinematic viscosity of \SI{1e-6}{\square\meter\per\second}. The choice of a 2D geometry has the advantage of cheaper computational effort than a 3D case, making it feasible to simulate very large systems. A granular column of aspect ratio `a' of 0.8 was used. Dry analyses were also performed to study the effect of hydrodynamic forces on the run-out distance.
 
 \begin{figure}[htpb]
-\includegraphics[width=0.97\columnwidth]{figs/geometry.pdf}
+\includegraphics[width=0.97\columnwidth]{figs/geometry.png}
 \caption{Underwater granular collapse set-up}
 \label{fig:setup}
 \end{figure}
@@ -381,7 +350,7 @@ pore-pressure along the bottom for low and high permeability conditions. As the
 flow progresses, the low permeability of the granular column causes 
 hydroplaning to occur at the base of the column, which can be observed by high 
 positive pore-pressure at the base of the flow front 
-(\cref{fig:Loose_r095_PWP_flow,fig:Loose_r095_PWPress_flow}), resulting in a 
+(\cref{fig:Loose_r095_PWP_flow}), resulting in a 
 longer run-out distance.
 
 \begin{figure}
@@ -507,14 +476,8 @@ surface in contrast to the more uniform flow behaviour in the loose condition.
 The thickness of the deposit in both dense and loose condition is almost the 
 same, however the density of the flow results in a Froude's number of 0.59 and
 0.429 for loose and dense conditions, respectively. The low initial density 
-results in more hydroplaning in the loose condition. The effect of water 
-entrainment at the flow front in dense and loose conditions can be seen 
-in~\cref{fig:Dense_Loose_voro}. Water entrainment at the flow front can be 
-observed in the loose condition, this is shown by white-coloured (empty Voronoi 
-cells) at the flow front. This empty region in the granular packing between the 
-granular mass and the base at the flow front represents the entrained water, 
-which results in hydroplaning. Comparing the evolution packing densities in 
-dense and loose conditions
+results in more hydroplaning in the loose condition.
+Comparing the evolution packing densities in dense and loose conditions
 (\cref{fig:Packing_Density_a08_dense,fig:Packing_Density_a08_loose}) 
 reveal almost the same packing density when the flow is fully mobilised. Hence, 
 it is the density of the flowing granular mass that controls the influence of 
@@ -524,49 +487,6 @@ more water at the flow front, resulting in a hydroplaning effect that overcomes
 the influence of viscous drag forces and thereby yields a higher run-out 
 distance than the dry condition.
 
-\section{Summary}
-
-Two-dimensional LB-DEM simulations were performed to understand the behaviour of
-submarine granular flows. Unlike dry granular collapse, the run-out behaviour in
-fluid is dictated by the initial volume fraction.
-\shortciteNP{Rondon2011} also observed that the collapse of a granular column in a 
-viscous fluid is mainly controlled by the initial volume fraction and not by 
-the aspect ratio of the column. The role of the initial volume fraction 
-observed explains the pore pressure feedback mechanism proposed 
-by~\shortciteNP{Schaeffer2008,Iverson2000} in the context of landslides. The 
-compaction or dilation of grains can cause additional stress in the grains 
-which can stabilise or destabilise the soil. The flow is thus controlled by the 
-coupling between the dilatancy of the granular layer and the development of 
-pore pressure in the fluid phase~\shortcite{Pailha2008}. The dense column needs to 
-dilate in order to flow. When it starts to fall, liquid is then sucked into the 
-column, which is then stabilised by the additional viscous 
-drag~\shortcite{Rondon2011,Topin2012}. By opposition the loose column when 
-it starts flowing expands and ejects liquid, leading to a partial fluidisation 
-of the material.
-
-\begin{figure}[htbp]
-\centering
-\makebox[\linewidth][c]{
-\begin{subfigure}[t]{0.975\linewidth}
-	\centering
-    \includegraphics[width=\linewidth]{figs/a08/Dense_a08_voro_tc}
-    \caption{Dense initial packing (83\%)}
-    \label{fig:Dense_a08_voro_tc}
-\end{subfigure}
-}\\
-\makebox[\linewidth][c]{
-\begin{subfigure}[t]{0.975\linewidth}
-	\centering
-    \includegraphics[width=\linewidth]{figs/a08/Loose_a08_voro_tc}
-    \caption{Loose initial packing (79\%)}
-    \label{fig:Loose_a08_voro_tc}
-\end{subfigure}
-}
-\caption{Evolution of packing fraction at $t = \tau_c$ for dense and loose 
-initial packing fraction. Black means dense packing, while white colour denotes 
-loose packing in the Voronoi cell.}
-\label{fig:Dense_Loose_voro}
-\end{figure}
 
 \begin{figure}[htbp]
 \centering
@@ -594,6 +514,22 @@ packing fraction (\textit{r} = 0.95 \textit{R}). Darker means dense packing,
 white indicates loose packing density.}
 \label{fig:Dense_Loose_PT}
 \end{figure}
+
+\section{Summary}
+
+Two-dimensional LB-DEM simulations were performed to understand the behaviour of
+submarine granular flows. Unlike dry granular collapse, the run-out behaviour in
+fluid is dictated by the initial volume fraction.
+\shortciteNP{Rondon2011} also observed that the collapse of a granular column in a 
+viscous fluid is mainly controlled by the initial volume fraction and not by 
+the aspect ratio of the column. The role of the initial volume fraction 
+observed explains the pore pressure feedback mechanism proposed 
+by~\shortciteANP{Schaeffer2008} in the context of landslides. The dense column needs to 
+dilate in order to flow. When it starts to fall, liquid is then sucked into the 
+column, which is then stabilised by the additional viscous 
+drag~\shortcite{Rondon2011,Topin2012}. By opposition the loose column when 
+it starts flowing expands and ejects liquid, leading to a partial fluidisation 
+of the material.
 
 \bibliographystyle{chicaco}
 \bibliography{references}
