@@ -3,20 +3,25 @@
 %use the following for A4 paper:
 \documentclass[12pt,a4paper,twocolumn,fleqn]{narms}
 
+
 % packages needed
+%\usepackage{subfigure}
 \usepackage{epsfig}
 \usepackage{timesmt}
+\mathindent=0pt%
 
-% add here more packages based on the document format
+\usepackage{chicaco}
+
 % custom packages
-\usepackage{dsfont}
 \usepackage{amsmath}
-\setlength{\mathindent}{0cm}
-\usepackage{subfig}
-\usepackage{siunitx}
 \usepackage[noabbrev]{cleveref}
+\usepackage{dsfont}
+\setlength{\mathindent}{0cm}
+%\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{siunitx}
 \usepackage[font=small,justification=justified,singlelinecheck=false]{caption}
-
 
 
 % setting math equation indent from left 0pts
@@ -183,7 +188,406 @@ In this study, a 2D poly-disperse system ($d_{max}/d_{min} = 1.8$) of circular d
 \label{fig:setup}
 \end{figure}
 
-\subsection{Effect of initial density}
+\subsection{Effect of initial packing density}
+
+\citeNP{Rondon2011} observed that the loose packings flow rapidly on a time
+scale proportional to the initial height and results in longer run-out distance 
+in comparison to the dense packing. Hydroplaning occurs above a critical 
+Froude's number of 0.4. The Froude's number is inversely related to the 
+thickness of the flow and its density. Hence, for the same thickness of flow, a 
+loose granular column will experience more hydroplaning than a dense granular 
+flow. This effect might result in longer run-out behaviour in fluid than the 
+dry condition for the same initial aspect ratio. The initial packing density 
+and the permeability of a 2D granular column, with an aspect ratio of 0.8, are 
+varied to understand their influence on the run-out behaviour. The run-out 
+behaviour of the dense case (83\% packing density), discussed in the previous 
+section, is compared with a loose granular column (79\% packing fraction). The 
+permeability is varied by changing the hydrodynamic radius from 0.7 \textit{R} 
+to 0.95 
+R. 
+
+The normalised run-out evolution with time for a loose initial packing (79\% 
+packing fraction) with different hydrodynamic radii 0.7 \textit{R}, 0.8 
+\textit{R}, 0.9 and 0.95 R are presented in~\cref{fig:Runout_a08_loose}. The 
+run-out evolution a column of grains in suspension is compared with the dry and 
+submerged granular columns to understand the influence of hydrodynamic forces 
+on the flow kinematics. Similar to the dense granular column, the run-out 
+distance increases with increase in the hydrodynamic radius (i.e., decrease in 
+permeability). At low permeabilities (\textit{r} = 0.9 and 0.95 \textit{R}), 
+the run-out distance is longer than the dry condition. This shows that the 
+lubrication effect in low permeability conditions overcomes the influence of 
+the drag force and the development of large negative pore-pressure resulting in 
+a longer run-out distance. Although the suspended granular masses experience 
+higher drag forces and turbulent effects, the run-out evolves almost at the 
+same rate in comparison with granular columns with high permeability. This 
+shows the effect of permeability on the dissipation rate of negative 
+pore-pressure developed during the initial stage of collapse.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.9\linewidth]{figs/Runout_a08_loose.pdf}
+\caption{Effect of permeability on the evolution of run-out for a column 
+collapse in fluid (a = 0.8 \& loose packing).}
+\label{fig:Runout_a08_loose}
+\end{figure}
+
+\Cref{fig:Loose_PWP_ini} shows the development of negative pore-pressure in low 
+permeability (\textit{r} = 0.95 \textit{R}) and dissipation of negative 
+pore-pressure in high permeability (\textit{r} = 0.7 \textit{R}) at the same 
+time $ t = \tau_c$. This difference in the quantity and the rate of dissipation 
+of negative pore-pressure results in a difference in the rate of flow 
+evolution. A low permeability column requires a longer duration to 
+evolve.~\Cref{fig:Loose_PWP_flow} shows the distribution of the excess 
+pore-pressure along the bottom for low and high permeability conditions. As the 
+flow progresses, the low permeability of the granular column causes 
+hydroplaning to occur at the base of the column, which can be observed by high 
+positive pore-pressure at the base of the flow front 
+(\cref{fig:Loose_r095_PWP_flow,fig:Loose_r095_PWPress_flow}), resulting in a 
+longer run-out distance.
+
+\begin{figure}
+\centering
+\makebox[\linewidth][c]{
+\begin{subfigure}[t]{0.975\linewidth}
+	\centering
+    \includegraphics[width=\linewidth]{figs/a08/Loose_r07_PWP_ini}
+    \caption{High permeability (\textit{r} = 0.7 \textit{R}) - Pressure at the 
+        bottom of the granular flow.}
+    \label{fig:Loose_r07_PWP_ini}
+\end{subfigure}
+}\\
+\makebox[\linewidth][c]{
+\begin{subfigure}[t]{0.975\linewidth}
+	\centering
+    \includegraphics[width=\linewidth]{figs/a08/Loose_r095_PWP_ini}
+    \caption{Low permeability (\textit{r} = 0.95 \textit{R}) - Pressure at the 
+    bottom of the granular flow.}
+    \label{fig:Loose_r095_PWP_ini}
+\end{subfigure}
+}
+\end{figure}
+\begin{figure}
+\ContinuedFloat
+\makebox[\linewidth][c]{
+\begin{subfigure}[t]{0.975\linewidth}
+	\centering
+    \includegraphics[width=\linewidth]{figs/a08/r07_PWP_ini_press_loose}
+    \caption{High permeability (\textit{r} = 0.7 \textit{R}) - Pressure contour 
+    (Pa).}
+    \label{fig:Loose_r07_PWPress_ini}
+\end{subfigure}
+}\\
+\makebox[\linewidth][c]{
+\begin{subfigure}[t]{0.975\linewidth}
+	\centering
+    \includegraphics[width=\linewidth]{figs/a08/r095_PWP_ini_press_loose}
+    \caption{Low permeability (\textit{r} = 0.95 \textit{R}) - Pressure contour 
+    (Pa).}
+    \label{fig:Loose_r095_PWPress_ini}
+\end{subfigure}
+}
+\caption{Effect of permeability on the excess pore water pressure distribution 
+along the base of a granular column collapse in fluid (a = 0.8 \& loose 
+packing) at $t = \tau_c$.}
+\label{fig:Loose_PWP_ini}
+\end{figure}
+
+\begin{figure}
+\centering
+\makebox[\linewidth][c]{
+\begin{subfigure}[t]{0.975\linewidth}
+	\centering
+    \includegraphics[width=\linewidth]{figs/a08/Loose_r07_PWP_flow}
+    \caption{High permeability (\textit{r} = 0.7 \textit{R}) - Pressure at the 
+        bottom of the granular flow.}
+    \label{fig:Loose_r07_PWP_flow}
+\end{subfigure}
+}\\
+\makebox[\linewidth][c]{
+\begin{subfigure}[t]{0.975\linewidth}
+	\centering
+    \includegraphics[width=\linewidth]{figs/a08/Loose_r095_PWP_flow}
+    \caption{Low permeability (\textit{r} = 0.95 \textit{R}) - Pressure at the 
+        bottom of the granular flow.}
+    \label{fig:Loose_r095_PWP_flow}
+\end{subfigure}
+}
+\end{figure}
+\begin{figure}
+\ContinuedFloat
+\makebox[\linewidth][c]{
+\begin{subfigure}[t]{0.975\linewidth}
+	\centering
+    \includegraphics[width=\linewidth]{figs/a08/r07_PWP_flow_press_loose}
+    \caption{High permeability (\textit{r} = 0.7 \textit{R}) - Pressure contour 
+    (Pa).}
+    \label{fig:Loose_r07_PWPress_flow}
+\end{subfigure}
+}\\
+\makebox[\linewidth][c]{
+\begin{subfigure}[t]{0.975\linewidth}
+	\centering
+    \includegraphics[width=\linewidth]{figs/a08/r095_PWP_flow_press_loose}
+    \caption{Low permeability (\textit{r} = 0.95 \textit{R}) - Pressure contour 
+    (Pa).}
+    \label{fig:Loose_r095_PWPress_flow}
+\end{subfigure}
+}
+\caption{Effect of permeability on the excess pore water pressure distribution 
+for a granular column collapse in fluid (a = 0.8 \& loose packing) at $t = 
+2\tau_c$.}
+\label{fig:Loose_PWP_flow}
+\end{figure}
+
+The evolution of the potential energy with time (\cref{fig:PE_a08_loose}) 
+reveals that at a very low permeability (\textit{r} = 0.95 \textit{R}), the 
+initial potential energy mobilised is smaller than at \textit{r} = 0.9 
+\textit{R}. Also with decreasing permeability, the time required to 
+dissipate the negative pore-pressure increases. This results in a shorter 
+run-out distance in the case of \textit{r} = 0.95 \textit{R} to that of 
+\textit{r} = 0.9 \textit{R}. As the quantity of material destabilised is small, 
+the flow is thinner and thus has a high Froude's number 
+(0.59).~\Cref{fig:KExy_a08_loose} shows that the peak horizontal kinetic 
+velocity observed in the case of \textit{r} = 0.9 \textit{R} is higher than 
+\textit{r} = 0.95 \textit{R}. A Froude's number of 0.59 for \textit{r} = 0.9 
+\textit{R} is observed in contrast to 0.46 for \textit{r} = 0.95 \textit{R}. 
+Both values of hydrodynamic radii result in a Froude's number that indicate the 
+occurrence of hydroplaning. However, the difference in the amount of material 
+destabilised for \textit{r} = 0.95 \textit{R} and the decreased effect of 
+hydroplaning results in a shorter run-out distance for \textit{r} = 0.95 
+\textit{R} in comparison to \textit{r} = 0.9 \textit{R}.
+
+
+\Cref{fig:Packing_Density_a08_loose} shows the evolution of packing 
+fraction with time for different values of permeability. As the column 
+collapses, water is entrained at the flow front. This can 
+observed by the decrease in the packing fraction during $t = \tau_c$ and $t = 
+3\tau_c$. As the flow progresses, the entrained water is expelled and the soil 
+grains consolidate to reach a critical packing density at the end of the flow. 
+The permeability (i.e., hydrodynamic radius) plays a crucial role in the rate 
+of dissipation of the entrained water. As the permeability decreases, the water 
+entrained at the flow front takes longer time to be dissipated resulting in 
+lubrication of the flow at low permeabilities.~\Cref{fig:Fr_a08_loose} shows 
+that the low permeable columns exhibit higher Froude's numbers, greater than 
+0.4, that indicates occurrence of hydroplaning. This lubrication effect results 
+in an increase in the run-out distance for columns with low permeabilities.
+
+\begin{figure}
+	\centering
+    \includegraphics[width=0.8\linewidth]{figs/PE_a08_loose}
+    \caption{Effect of permeability on the evolution of the potential energy 
+    with time for a granular column collapse in fluid (a = 0.8 \& loose 
+    packing).}
+    \label{fig:PE_a08_loose}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\makebox[\linewidth][c]{
+\begin{subfigure}[t]{0.8\linewidth}
+	\centering
+    \includegraphics[width=\linewidth]{figs/KE_a08_loose}
+    \caption{Evolution of the total kinetic energy.}
+    \label{fig:KE_a08_loose}
+\end{subfigure}
+}\\
+\makebox[\linewidth][c]{
+\begin{subfigure}[t]{0.95\linewidth}
+	\centering
+    \includegraphics[width=\linewidth]{figs/KExy_a08_loose}
+    \caption{Evolution of horizontal and vertical kinetic energies.}
+    \label{fig:KExy_a08_loose}
+\end{subfigure}
+}
+\caption{Effect of permeability on the evolution of kinetic energies with time 
+for a granular column collapse in fluid (a = 0.8 \& loose packing).}
+\label{fig:a08_loose_energy}
+\end{figure}
+
+\begin{figure}
+\centering
+\makebox[\linewidth][c]{
+\begin{subfigure}[t]{0.95\linewidth}
+	\centering
+    \includegraphics[width=0.8\linewidth]{figs/Packing_Density_a08_loose}
+    \caption{Evolution of packing density.}
+    \label{fig:Packing_Density_a08_loose}
+\end{subfigure}
+}\\
+\makebox[\linewidth][c]{
+\begin{subfigure}[t]{0.95\linewidth}
+	\centering
+    \includegraphics[width=0.8\linewidth]{figs/Fr_a08_loose}
+    \caption{Evolution of Froude's number.}
+    \label{fig:Fr_a08_loose}
+\end{subfigure}
+}
+    \caption{Effect of permeability on the evolution of packing density and 
+    Froude's number for a granular column collapse in fluid (a = 0.8 \& loose 
+    initial packing).}
+    \label{fig:Packing_Density_Fr_a08_loose}
+\end{figure}
+
+
+The evolution of grain trajectories with time are presented 
+in~\cref{fig:Loose_a08_permeability} for low (\textit{r} = 0.95 \textit{R}) and 
+high (\textit{r} = 0.9 \textit{R})
+permeability conditions. It can be observed that a high 
+permeability column shows a parabolic (convex) final profile in contrast to the 
+more concave profile observed in low permeability condition, due to the effect 
+of drag forces on the flow front. This difference in the flow thickness results 
+in a higher value of Froude's number (0.59) and the occurrence of hydroplaning 
+in the low permeability condition. Due to the high permeability, the water 
+entrained at the flow front is dissipated quicker and 
+thus no lubrication effect is observed. A Froude's number of 0.272 (no 
+hydroplaning) is observed for the high permeability condition (\textit{r} = 0.7 
+\textit{R}). The 
+thick flow front in dense condition results in higher effective stress, in 
+contrast to the low effective stress in loose condition due to positive 
+pore-pressure at the flow front. The higher effective stress results in more 
+frictional dissipation in dense condition, while the loose column experiences
+lubrication effect. This shows that the drag force predominates at high 
+permeability, while the low permeability condition is characterised by 
+hydroplaning and lubrication.
+
+\Cref{fig:effective_stress_a08} shows the normalised pressure at the 
+base for the low and high permeability flows at $ t = 2\tau_c$. The normalised 
+effective stress plotted is obtained as the average over 5 time steps at 
+$2\tau_c$. The effective stress at the base is normalised to the effective 
+stress of a static granular column before the collapse. A value of 1 indicates 
+that the effective stress hasn't changed, which can be observed in the static 
+region of the granular column. It can be observed that the normalised effective 
+stress is significantly higher for the high permeability condition at the flow 
+front in comparison to the almost non-existence of effective stress in the low 
+permeability condition. The observation of trivial effective stress at the flow 
+front corroborates the lubrication effect observed at low permeability 
+conditions.
+
+\begin{figure}
+\centering
+\makebox[\linewidth][c]{
+\begin{subfigure}[t]{0.975\linewidth}
+	\centering
+    \includegraphics[width=\linewidth]{figs/a08/LBM_MD_loose_a08_r07_pt}
+    \caption{High permeability (\textit{r} = 0.7 \textit{R}).}
+    \label{fig:LBM_MD_loose_a08_r07_pt}
+\end{subfigure}
+}\\
+\makebox[\linewidth][c]{
+\begin{subfigure}[t]{0.975\linewidth}
+	\centering
+    \includegraphics[width=\linewidth]{figs/a08/LBM_MD_a08_Loose_r09}
+    \caption{Low permeability (\textit{r} = 0.95 \textit{R}).}
+    \label{fig:LBM_MD_a08_Loose_r09}
+\end{subfigure}
+}
+\caption{Particle tracking of the deposit morphology
+for a granular column collapse in fluid (a = 0.8 \& loose packing), influence 
+of permeability.}
+\label{fig:Loose_a08_permeability}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.97\columnwidth]{figs/a08/effective_stress_a08}
+\caption{Effect of permeability on the normalised effective stress for loose 
+initial packing at $t = 2\tau_c$.}
+\label{fig:effective_stress_a08}
+\end{figure}
+
+\Cref{fig:Dense_Loose_PT} shows the grain trajectories of a dense and a loose 
+initial packing for a hydrodynamic radius (\textit{r} = 0.95 \textit{R}). It 
+can be observed that 
+the dense initial packing results in a lot of turbulent behaviour at the flow 
+surface in contrast to the more uniform flow behaviour in the loose condition. 
+The thickness of the deposit in both dense and loose condition is almost the 
+same, however the density of the flow results in a Froude's number of 0.59 and
+0.429 for loose and dense conditions, respectively. The low initial density 
+results in more hydroplaning in the loose condition. The effect of water 
+entrainment at the flow front in dense and loose conditions can be seen 
+in~\cref{fig:Dense_Loose_voro}. Water entrainment at the flow front can be 
+observed in the loose condition, this is shown by white-coloured (empty Voronoi 
+cells) at the flow front. This empty region in the granular packing between the 
+granular mass and the base at the flow front represents the entrained water, 
+which results in hydroplaning. Comparing the evolution packing densities in 
+dense and loose conditions
+(\cref{fig:Packing_Density_a08_dense,fig:Packing_Density_a08_loose}) 
+reveal almost the same packing density when the flow is fully mobilised. Hence, 
+it is the density of the flowing granular mass that controls the influence of 
+hydroplaning for a given hydrodynamic radius and initial aspect ratio. A 
+loosely packed granular column with low permeability entrains 
+more water at the flow front, resulting in a hydroplaning effect that overcomes 
+the influence of viscous drag forces and thereby yields a higher run-out 
+distance than the dry condition.
+
+\citeNP{Rondon2011} also observed that the collapse of a granular column in a 
+viscous fluid is mainly controlled by the initial volume fraction and not by 
+the aspect ratio of the column. The role of the initial volume fraction 
+observed explains the pore pressure feedback mechanism proposed 
+by~\citeNP{Schaeffer2008,Iverson2000} in the context of landslides. The 
+compaction or dilation of grains can cause additional stress in the grains 
+which can stabilise or destabilise the soil. The flow is thus controlled by the 
+coupling between the dilatancy of the granular layer and the development of 
+pore pressure in the fluid phase~\cite{Pailha2008}. The dense column needs to 
+dilate in order to flow. When it starts to fall, liquid is then sucked into the 
+column, which is then stabilised by the additional viscous 
+drag~\cite{Rondon2011,Topin2012}. By opposition the loose column when 
+it starts flowing expands and ejects liquid, leading to a partial fluidisation 
+of the material.
+
+\begin{figure}[htbp]
+\centering
+\makebox[\linewidth][c]{
+\begin{subfigure}[t]{0.975\linewidth}
+	\centering
+    \includegraphics[width=\linewidth]{figs/a08/Dense_a08_voro_tc}
+    \caption{Dense initial packing (83\%)}
+    \label{fig:Dense_a08_voro_tc}
+\end{subfigure}
+}\\
+\makebox[\linewidth][c]{
+\begin{subfigure}[t]{0.975\linewidth}
+	\centering
+    \includegraphics[width=\linewidth]{figs/a08/Loose_a08_voro_tc}
+    \caption{Loose initial packing (79\%)}
+    \label{fig:Loose_a08_voro_tc}
+\end{subfigure}
+}
+\caption{Evolution of packing fraction at $t = \tau_c$ for dense and loose 
+initial packing fraction. Black means dense packing, while white colour denotes 
+loose packing in the Voronoi cell.}
+\label{fig:Dense_Loose_voro}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\makebox[\linewidth][c]{
+\begin{subfigure}[t]{0.8\linewidth}
+	\centering
+    \includegraphics[width=\linewidth]{figs/a08/PT_Dense_R095}
+    \caption{Dense initial packing (83\%)}
+    \label{fig:PT_Dense_R095}
+\end{subfigure}
+}\\
+\makebox[\linewidth][c]{
+\begin{subfigure}[t]{0.8\linewidth}
+	\centering
+    \includegraphics[width=\linewidth]{figs/a08/PT_Loose_R095}
+    \caption{Loose initial packing (79\%)}
+    \label{fig:PT_Loose_R095}
+\end{subfigure}
+}
+\caption[Effect of initial density on the deposit morphology
+for a granular column collapse in fluid (a = 0.8).]{Effect of initial density 
+on the deposit morphology
+for a granular column collapse in fluid (a = 0.8). Dense vs. loose initial 
+packing fraction (\textit{r} = 0.95 \textit{R}). Darker means dense packing, 
+white indicates 
+loose 
+packing density.}
+\label{fig:Dense_Loose_PT}
+\end{figure}
 
 \bibliographystyle{chicaco}
 \bibliography{references}
