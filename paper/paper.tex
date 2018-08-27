@@ -118,11 +118,11 @@
 \section{INTRODUCTION}
 
 
-The flow of dense granular material is a common phenomenon in engineering predictions, such as avalanches, landslides, and debris-flow modelling. Despite the huge amount of research that has gone into describing the behaviour of granular flows, a constitutive equation that describes the overall behaviour of a flowing granular material is still lacking. The initiation and propagation of submarine granular flows depend mainly on the slope, density, and quantity of the material destabilised. Although certain macroscopic models are able to capture the simple mechanical behaviours, the complex physical mechanisms that occur at the grain scale, such as thydrodynamic instabilities, the formation of clusters, collapse, and transport, have largely been ignored~\shortcite{Topin2011}. The momentum transfer between the discrete and the continuous phases significantly affects the dynamics of the flow~\shortcite{Peker2007}. Grain-scale description of the granular material enriches the macro-scale variables,  which poorly account for the local rheology of the materials.  In order to describe the mechanism of saturated and/or immersed granular flows, it is important to consider both the dynamics of the solid phase and the role of the ambient fluid~\shortcite{Denlinger2001}. In particular, when the solid phase reaches a high volume fraction, it is important to consider the strong heterogeneity arising from the contact forces between the grains, the drag interactions which counteract the movement of the grains, and the hydrodynamic forces that reduce the weight of the solids inducing a transition from dense compacted to a dense suspended flow~\shortcite{Meruane2010}. The case of the collapse in presence of an interstitial fluid has been less studied. In this paper, we study the effect of permeability and initial density on the run-out evolution.
+The flow of dense granular material is a common phenomenon in engineering predictions, such as avalanches, landslides, and debris-flow modelling. Despite the huge amount of research that has gone into describing the behaviour of granular flows, a constitutive equation that describes the overall behaviour of a flowing granular material is still lacking. The initiation and propagation of submarine granular flows depend mainly on the slope, density, and quantity of the material destabilised. Although certain macroscopic models are able to capture the simple mechanical behaviours, the complex physical mechanisms that occur at the grain scale, such as the hydrodynamic instabilities, the formation of clusters, collapse, and transport, have largely been ignored~\shortcite{Topin2011}. The momentum transfer between the discrete and the continuous phases significantly affects the dynamics of the flow~\shortcite{Peker2007}. Grain-scale description of the granular material enriches the macro-scale variables,  which poorly account for the local rheology of the materials.  In order to describe the mechanism of saturated and/or immersed granular flows, it is important to consider both the dynamics of the solid phase and the role of the ambient fluid~\shortcite{Denlinger2001}. In particular, when the solid phase reaches a high volume fraction, it is important to consider the strong heterogeneity arising from the contact forces between the grains, the drag interactions which counteract the movement of the grains, and the hydrodynamic forces that reduce the weight of the solids inducing a transition from dense compacted to a dense suspended flow~\shortcite{Meruane2010}. The case of the collapse in presence of an interstitial fluid has been less studied. In this paper, we study the effect of permeability and initial density on the run-out evolution.
 
 \section{LBM FORMULATION}
 
-The Lattice Boltzmann Method is a `micro-particle' based numerical time-stepping procedure for the solution of incompressible fluid flows. Consider a 2D incompressible fluid flow with density $\rho$ and kinematic viscosity \textit{v}, in a rectangular domain \textit{\textbf{D}}. The fluid domain is divided into a rectangular grid or lattice, with the same spacing \textit{`h'} in both the \textit{x-} and the \textit{y-}directions~\shortcite{Kumar2015}. The present study focuses on two-dimensional problems, hence the \textit{D2Q9} momentum discretisation is adopted (see \shortciteN{He1997} for naming convention). The Multiple Relaxation Time LBM (LBM-MRT) is adopted in the present study for numerical stability. Further details about the modelling can be found in~\shortciteNP{Kumar2015,Kumar2017}.
+The Lattice Boltzmann Method is a `micro-particle' based numerical time-stepping procedure for the solution of incompressible fluid flows. Consider a 2D incompressible fluid flow with density $\rho$ and kinematic viscosity \textit{v}, in a rectangular domain \textit{\textbf{D}}. The fluid domain is divided into a rectangular grid or lattice, with the same spacing \textit{`h'} in both the \textit{x-} and the \textit{y-}directions. The present study focuses on two-dimensional problems, hence the \textit{D2Q9} momentum discretisation is adopted (see \shortciteN{He1997} for naming convention). The Multiple Relaxation Time LBM (LBM-MRT) is adopted in the present study for numerical stability. Further details about the modelling can be found in~\shortciteN{Kumar2015,Kumar2017}.
 
 %**************************************************************************
 
@@ -130,7 +130,17 @@ The Lattice Boltzmann Method is a `micro-particle' based numerical time-stepping
 The Lattice Boltzmann approach has the advantage of accommodating large particle sizes and the interaction between the fluid and the moving particles can be modelled through relatively simple fluid - particle interface treatments. Further, employing the Discrete Element Method (DE) to account for the particle/particle interaction naturally leads to a combined LB - DEM solution procedure. The Eulerian nature of the Lattice Boltzmann formulation, together with the common explicit time step scheme of both the Lattice Boltzmann and the Discrete Element makes this coupling strategy an efficient numerical procedure for the simulation of particle-fluid systems~\shortcite{Cook2004}. In order to capture the actual physical behaviour of the fluid-particle system, the boundary condition between the fluid and the particle is modelled as a non-slip boundary condition, i.e. the fluid near the particle should have similar velocity as the particle boundary. The solid particles inside the fluid are represented by lattice nodes. The discrete nature of lattice will result in stepwise representation of the surfaces. Very small lattice spacing is adopted to obtain smoother boundaries. 
 
 \section{UNDERWATER GRANULAR FLOWS}
-In this study, a 2D poly-disperse system ($d_{max}/d_{min} = 1.8$) of circular discs in fluid was used to understand the behaviour of granular flows on inclined planes (see~\Cref{fig:setup}). The soil column was modelled using 1000 discs of density \SI{2650}{\kg\per\cubic\meter} and a contact friction angle of \SI{26}{\degree}. The collapse of the column was simulated inside a fluid with a density of \SI{1000}{\kg\per\cubic\meter}  and a kinematic viscosity of \SI{1e-6}{\square\meter\per\second}. The choice of a 2D geometry has the advantage of cheaper computational effort than a 3D case, making it feasible to simulate very large systems. A granular column of aspect ratio `a' of 0.8 was used. Dry analyses were also performed to study the effect of hydrodynamic forces on the run-out distance.
+In this study, a 2D poly-disperse system ($d_{max}/d_{min} = 1.8$) of circular
+discs in fluid was used to understand the behaviour of granular flows on
+inclined planes (see~\Cref{fig:setup}). The soil column was modelled using
+1000 discs of density \SI{2650}{\kg\per\cubic\meter} and a contact friction
+angle of \SI{26}{\degree}. The collapse of the column was simulated inside a
+fluid with a density of \SI{1000}{\kg\per\cubic\meter}  and a kinematic
+viscosity of \SI{1e-6}{\square\meter\per\second}. The choice of a 2D geometry
+has the advantage of cheaper computational effort than a 3D case, making it
+feasible to simulate very large systems. A granular column of aspect ratio
+`a' of 0.8 was used. Dry analyses were also performed to understand the effect
+of hydrodynamic forces on the run-out distance in submerged granular flows.
 
 \begin{figure}[htpb]
 \includegraphics[width=0.97\columnwidth]{figs/geometry.png}
@@ -140,7 +150,7 @@ In this study, a 2D poly-disperse system ($d_{max}/d_{min} = 1.8$) of circular d
 
 \subsection{Effect of initial packing density}
 
-\shortciteNP{Rondon2011} observed that the loose packings flow rapidly on a time
+\shortciteN{Rondon2011} observed that the loose packings flow rapidly on a time
 scale proportional to the initial height and results in longer run-out distance 
 in comparison to the dense packing. Hydroplaning occurs above a critical 
 Froude's number of 0.4. The Froude's number is inversely related to the 
@@ -152,7 +162,10 @@ and the permeability of a 2D granular column, with an aspect ratio of 0.8, are
 varied to understand their influence on the run-out behaviour. The run-out 
 behaviour of the dense case (83\% packing density), is compared with a loose
 granular column (79\% packing fraction). The permeability is varied by changing
-the hydrodynamic radius from 0.7 \textit{R} to 0.95 \textit{R}. 
+the hydrodynamic radius from 0.7 \textit{R} (high permeability) to 0.95 \textit{R}
+(low permeability). A hydrodynamic radius refers to the reduced grain diameter
+used only in the LBM computation to simulate a 3D flow through a 2D system of rods.
+See~\shortciteN{Kumar2015} for further details on the hydrodynamic radius.
 
 \subsection{Dense granular collapse}
 The normalised run-out for different hydrodynamic radii for a granular column 
@@ -183,11 +196,12 @@ slope in the run-out evolution with decrease in the
 permeability.~\Cref{fig:PWP_ini_dense} shows the distribution of pore-pressure 
 in high and low permeability granular media along the horizontal direction at a 
 height of $10 \times d$ from the base. In LBM, the pore-pressure in fluid is a 
-function of fluid density distribution functions. At time $t = \tau_c$, the 
+function of fluid density distribution functions. At time $t = \tau_c$, defined
+as the critical time for the flow to be fully mobilised, the 
 highly permeable (\textit{r} = 0.7 \textit{R}) granular column 
 shows smaller negative pore-pressure in comparison to large negative 
 pore-pressures observed in the shearing zone of a low permeable column 
-(\textit{r} = 0.9 R). This shows that not only does it take longer for the 
+(\textit{r} = 0.9 \textit{R}). This shows that not only does it take longer for the 
 pore-pressure to dissipate with a decrease in permeability, but also results in 
 almost twice the negative pore-pressure than what is observed in the high 
 permeable case (\cref{fig:r095_PWP_ini_dense}). A 
@@ -299,8 +313,9 @@ dense packing) at $t = 2\tau_c$.}
 \end{figure}
 
 
-The high permeability granular column shows lower water entrainment 
-(\cref{fig:Packing_Density_a08_dense}), which indicates that for highly 
+\Cref{fig:Packing_Density_a08_dense} shows that the high permeability granular
+column shows lower water entrainment (smaller decrease in packing denisty),
+which indicates that for highly 
 permeable flows the drag force acting on the soil grains predominates over the 
 lubrication effect on the run-out behaviour.~\Cref{fig:Fr_a08_dense} shows the 
 evolution of Froude's number with time for different permeability conditions. 
@@ -315,8 +330,8 @@ settlement of grains and expulsion of entrained water.
 \subsection{Loose granular collapse}
 
 The normalised run-out evolution with time for a loose initial packing (79\% 
-packing fraction) with different hydrodynamic radii 0.7 \textit{R}, 0.8 
-\textit{R}, 0.9 and 0.95 R are presented in~\cref{fig:Runout_a08_loose}. The 
+packing fraction) with different hydrodynamic radii 0.7 \textit{R} to 0.95
+\textit{R} are presented in~\cref{fig:Runout_a08_loose}. The 
 run-out evolution a column of grains in suspension is compared with the dry and 
 submerged granular columns to understand the influence of hydrodynamic forces 
 on the flow kinematics. Similar to the dense granular column, the run-out 
@@ -519,17 +534,16 @@ white indicates loose packing density.}
 
 Two-dimensional LB-DEM simulations were performed to understand the behaviour of
 submarine granular flows. Unlike dry granular collapse, the run-out behaviour in
-fluid is dictated by the initial volume fraction.
-\shortciteNP{Rondon2011} also observed that the collapse of a granular column in a 
-viscous fluid is mainly controlled by the initial volume fraction and not by 
-the aspect ratio of the column. The role of the initial volume fraction 
+fluid is dictated by the initial volume fraction. 
+\shortciteN{Rondon2011} experimentally observed that the collapse of a granular
+column in a viscous fluid is mainly controlled by the initial volume fraction and
+not by the aspect ratio of the column. The role of the initial volume fraction 
 observed explains the pore pressure feedback mechanism proposed 
-by~\shortciteANP{Schaeffer2008} in the context of landslides. The dense column needs to 
-dilate in order to flow. When it starts to fall, liquid is then sucked into the 
-column, which is then stabilised by the additional viscous 
-drag~\shortcite{Rondon2011,Topin2012}. By opposition the loose column when 
-it starts flowing expands and ejects liquid, leading to a partial fluidisation 
-of the material.
+by~\shortciteN{Schaeffer2008} in the context of landslides. The dense column
+needs to dilate in order to flow. When it starts to fall, liquid is then sucked
+into the column, which is then stabilised by the additional viscous drag. By
+opposition the loose column when it starts flowing expands and ejects liquid,
+leading to a partial fluidisation of the material.
 
 \bibliographystyle{chicaco}
 \bibliography{references}
